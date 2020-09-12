@@ -1,6 +1,9 @@
 package xuid
 
-import "encoding/base32"
+import (
+	"encoding/base32"
+	"strings"
+)
 
 var b32enc = base32.StdEncoding.WithPadding(base32.NoPadding)
 
@@ -30,5 +33,5 @@ func (x *XUID) String() string {
 	b[21] = '-'
 	copy(b[22:], dst[18:]) // 8
 
-	return string(final[:31+pfxLn])
+	return strings.ToLower(string(final[:31+pfxLn]))
 }
