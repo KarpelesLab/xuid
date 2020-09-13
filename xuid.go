@@ -29,7 +29,7 @@ func (x *XUID) String() string {
 	}
 
 	copy(b[:6], dst[:6]) // 6
-	b[7] = '-'
+	b[6] = '-'
 	copy(b[7:11], dst[6:10]) // 4
 	b[11] = '-'
 	copy(b[12:16], dst[10:14]) // 4
