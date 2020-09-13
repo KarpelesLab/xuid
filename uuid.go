@@ -6,7 +6,7 @@ func (x *XUID) ToUUID() string {
 	return x.UUID.String()
 }
 
-func ParseUUID(prefix, inputUuid string) (*XUID, error) {
+func ParseUUID(inputUuid, prefix string) (*XUID, error) {
 	u, err := uuid.Parse(inputUuid)
 	if err != nil {
 		return nil, err
@@ -15,6 +15,6 @@ func ParseUUID(prefix, inputUuid string) (*XUID, error) {
 	return FromUUID(u, prefix)
 }
 
-func MustParseUUID(prefix, inputUuid string) *XUID {
+func MustParseUUID(inputUuid, prefix string) *XUID {
 	return Must(FromUUID(uuid.MustParse(inputUuid), prefix))
 }
