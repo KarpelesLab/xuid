@@ -44,7 +44,6 @@ func (x *XUID) String() string {
 func Parse(s string) (*XUID, error) {
 	// parse can handle many type of formats, and will fallback to uuid parsing if failing
 	// a xuid length can be 30bytes (no prefix), or 32~36 (prefix len 1 to 5)
-
 	l := len(s)
 	var pfx, v string
 
@@ -53,7 +52,7 @@ func Parse(s string) (*XUID, error) {
 		v = s
 	case 32, 33, 34, 35, 36:
 		pfxLn := l - 31
-		if s[pfxLn+1] != '-' {
+		if s[pfxLn] != '-' {
 			// fallback
 			return ParseUUID(s, "")
 		}
@@ -78,7 +77,7 @@ func Parse(s string) (*XUID, error) {
 		v[22:],
 	}
 	var data uuid.UUID
-	_, err := b32enc.Decode(data[:], []byte(strings.Join(parts, "")))
+	_, err := b32enc.Decode(data[:], []byte(strings.ToUpper(strings.Join(parts, ""))))
 	if err != nil {
 		return nil, err
 	}
