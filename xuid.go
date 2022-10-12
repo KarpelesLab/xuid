@@ -9,7 +9,7 @@ import (
 
 var b32enc = base32.StdEncoding.WithPadding(base32.NoPadding)
 
-func (x *XUID) String() string {
+func (x XUID) String() string {
 	var dst [26]byte
 	// convert to base32
 	b32enc.Encode(dst[:], x.UUID[:])
