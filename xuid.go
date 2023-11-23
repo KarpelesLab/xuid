@@ -41,6 +41,10 @@ func (x XUID) String() string {
 	return strings.ToLower(string(final[:31+pfxLn]))
 }
 
+func (x XUID) Equals(y XUID) bool {
+	return x == y
+}
+
 func Parse(s string) (*XUID, error) {
 	// parse can handle many type of formats, and will fallback to uuid parsing if failing
 	// a xuid length can be 30bytes (no prefix), or 32~36 (prefix len 1 to 5)
