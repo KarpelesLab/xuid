@@ -30,6 +30,7 @@ func (x *XUID) Scan(value any) error {
 	}
 }
 
-func (x *XUID) Value() (driver.Value, error) {
+// Value returns the xuid as a string value
+func (x XUID) Value() (driver.Value, error) {
 	return x.String(), nil
 }
