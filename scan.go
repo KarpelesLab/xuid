@@ -2,6 +2,7 @@ package xuid
 
 import (
 	"database/sql"
+	"database/sql/driver"
 	"fmt"
 )
 
@@ -27,4 +28,8 @@ func (x *XUID) Scan(value any) error {
 	default:
 		return fmt.Errorf("Scan type %T unsupported to store into XUID", v)
 	}
+}
+
+func (x *XUID) Value() (driver.Value, error) {
+	return x.String(), nil
 }
