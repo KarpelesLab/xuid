@@ -14,7 +14,7 @@ func New(prefix string) *XUID {
 // Must can be used to transform any error thrown by the called method into
 // a panic, and is useful when we know a call cannot fail, or that failure
 // should be fatal.
-func Must(x *XUID, err error) *XUID {
+func Must[T any](x T, err error) T {
 	if err != nil {
 		panic(err)
 	}
