@@ -2,6 +2,7 @@ package xuid
 
 import (
 	"encoding/base32"
+	"fmt"
 	"strings"
 
 	"github.com/google/uuid"
@@ -9,6 +10,7 @@ import (
 
 var b32enc = base32.StdEncoding.WithPadding(base32.NoPadding)
 
+// String formats the ID as a string and return it
 func (x XUID) String() string {
 	var dst [26]byte
 	// convert to base32
@@ -41,10 +43,12 @@ func (x XUID) String() string {
 	return strings.ToLower(string(final[:31+pfxLn]))
 }
 
+// Equals return true if x==y
 func (x XUID) Equals(y XUID) bool {
 	return x == y
 }
 
+// Parse parses a string and returns the resulting xuid
 func Parse(s string) (*XUID, error) {
 	// parse can handle many type of formats, and will fallback to uuid parsing if failing
 	// a xuid length can be 30bytes (no prefix), or 32~36 (prefix len 1 to 5)
@@ -89,6 +93,20 @@ func Parse(s string) (*XUID, error) {
 	return &XUID{Prefix: pfx, UUID: data}, nil
 }
 
+// MustParse will perform Parse and panic if the parsing failed
 func MustParse(s string) *XUID {
 	return Must(Parse(s))
+}
+
+// ParsePrefix will parse the provided string and ensure the prefix matches the passed parameter,
+// or return a ErrBadPrefix-based error if not.
+func ParsePrefix(s, prefix string) (*XUID, error) {
+	v, err := Parse(s)
+	if err != nil {
+		return nil, err
+	}
+	if v.Prefix != prefix {
+		return nil, fmt.Errorf("%w, expected prefix %s", ErrBadPrefix, prefix)
+	}
+	return v, nil
 }
