@@ -33,6 +33,14 @@ func (x *XUID) Scan(value any) error {
 		x.Prefix = nv.Prefix
 		x.UUID = nv.UUID
 		return nil
+	case []byte:
+		nv, err := Parse(string(v))
+		if err != nil {
+			return err
+		}
+		x.Prefix = nv.Prefix
+		x.UUID = nv.UUID
+		return nil
 	default:
 		return fmt.Errorf("Scan type %T unsupported to store into XUID", v)
 	}
