@@ -518,29 +518,29 @@ func TestStringWithoutPrefix(t *testing.T) {
 	// Test XUID string representation with an empty prefix
 	// Create a known UUID that we can test
 	u := uuid.MustParse("3f1b4d37-34d9-46c6-b546-a57c5f736d22")
-	
+
 	// Create a XUID without a prefix
 	xuid, err := FromUUID(u, "")
 	if err != nil {
 		t.Errorf("FromUUID() error = %v", err)
 		return
 	}
-	
+
 	// Get the string representation
 	result := xuid.String()
-	
+
 	// The string representation without a prefix should match our example from the README
 	// but without the prefix and dash
 	if !strings.HasPrefix(result, "h4nu2n-") {
 		t.Errorf("String() with empty prefix does not start with h4nu2n-, got %s", result)
 	}
-	
+
 	// Verify that we can convert it back to a UUID
 	uuidStr := xuid.ToUUID()
 	if uuidStr != "3f1b4d37-34d9-46c6-b546-a57c5f736d22" {
 		t.Errorf("ToUUID() = %q, want %q", uuidStr, "3f1b4d37-34d9-46c6-b546-a57c5f736d22")
 	}
-	
+
 	// Verify the prefix is empty
 	if xuid.Prefix != "" {
 		t.Errorf("Prefix = %q, want empty string", xuid.Prefix)

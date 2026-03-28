@@ -12,7 +12,7 @@ import "github.com/google/uuid"
 type XUID struct {
 	// Prefix is a string of up to 5 characters identifying the type of entity
 	Prefix string
-	
+
 	// UUID is the standard universally unique identifier that provides
 	// the uniqueness guarantee
 	UUID uuid.UUID

@@ -7,7 +7,7 @@ import "github.com/google/uuid"
 var refNs = uuid.MustParse("d16b6139-8989-467f-a240-441df6734f45")
 
 // New creates a new random XUID with the given prefix.
-// It's a shorthand for Must(NewRandom(prefix)) and will panic if the random 
+// It's a shorthand for Must(NewRandom(prefix)) and will panic if the random
 // generator fails for some reason.
 //
 // This is the most common method for creating new XUIDs.

@@ -44,21 +44,21 @@ func (x XUID) String() string {
 	}
 
 	// Format the base32 encoded UUID with hyphens in the same positions as a regular UUID
-	copy(b[:6], dst[:6])      // First 6 chars
+	copy(b[:6], dst[:6]) // First 6 chars
 	b[6] = '-'
-	copy(b[7:11], dst[6:10])  // Next 4 chars
+	copy(b[7:11], dst[6:10]) // Next 4 chars
 	b[11] = '-'
 	copy(b[12:16], dst[10:14]) // Next 4 chars
 	b[16] = '-'
 	copy(b[17:21], dst[14:18]) // Next 4 chars
 	b[21] = '-'
-	copy(b[22:], dst[18:])     // Final 8 chars
+	copy(b[22:], dst[18:]) // Final 8 chars
 
 	// Return the string representation, ensuring it's lowercase
 	return strings.ToLower(string(final[:31+pfxLn]))
 }
 
-// Equals compares two XUIDs and returns true if they are equal, 
+// Equals compares two XUIDs and returns true if they are equal,
 // meaning they have the same prefix and UUID.
 func (x XUID) Equals(y XUID) bool {
 	return x == y
