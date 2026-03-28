@@ -1,4 +1,7 @@
 [![GoDoc](https://godoc.org/github.com/KarpelesLab/xuid?status.svg)](https://godoc.org/github.com/KarpelesLab/xuid)
+[![Build Status](https://github.com/KarpelesLab/xuid/actions/workflows/test.yml/badge.svg)](https://github.com/KarpelesLab/xuid/actions/workflows/test.yml)
+[![Coverage Status](https://coveralls.io/repos/github/KarpelesLab/xuid/badge.svg?branch=master)](https://coveralls.io/github/KarpelesLab/xuid?branch=master)
+[![Go Report Card](https://goreportcard.com/badge/github.com/KarpelesLab/xuid)](https://goreportcard.com/report/github.com/KarpelesLab/xuid)
 
 # XUID
 
